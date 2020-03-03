@@ -1,4 +1,4 @@
-# Demo2
+# Demo
 |Integrantes|Código|
 |-----------|-----------|
 |Juan Felipe Herrera Poveda|20181020077|

@@ -1,7 +1,6 @@
 package gui;
 
 import animacion.*;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -33,6 +32,7 @@ public class recreacion extends JFrame {
     boolean ataca = false;
     String[] posicion = {"null", "null"};
     public static String eleccion;
+    int mxA,myA;
     
     public recreacion() {
         fondo = h.getImage(this.getClass().getResource("/assets/map22x15_claro.png"));
@@ -47,7 +47,8 @@ public class recreacion extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                
+                int tecla = e.getKeyCode();
+                System.out.println(tecla);
                 switch(e.getKeyCode()){
                     case KeyEvent.VK_UP:
                         posicion[0] = posicion[1];
@@ -123,12 +124,16 @@ public class recreacion extends JFrame {
                         switch (posicion[1]) {
                             case "arriba":
                                 img = h.getImage(this.getClass().getResource(personaje.getAtacaArriba()));
+                                mxA=personaje.getAtacaArribaX();
+                                myA=personaje.getAtacaArribaY();
                                 break;
                             case "abajo":
                                 img = h.getImage(this.getClass().getResource(personaje.getAtacaAbajo()));
                                 break;
                             case "derecha":
                                 img = h.getImage(this.getClass().getResource(personaje.getAtacaDerecha()));
+                                mxA=personaje.getAtacaDerechaX();
+                                myA=personaje.getAtacaDerechaY();
                                 break;
                             case "izquierda":
                                 img = h.getImage(this.getClass().getResource(personaje.getAtacaIzquierda()));
@@ -139,18 +144,20 @@ public class recreacion extends JFrame {
                         if (Incremento > 5) {
                             Incremento = 0;
                         }
+                        personaje.setIncremento(Incremento);
                         break;
                 }
             }
         });
         setFocusable(true);
+        
     }
     
     @Override
     public void paint(Graphics g) {
         g.drawImage(bi, 0, 0, null);
-        int mxA = (Incremento % 5) * 64;
-        int myA = (Incremento / 5) * 52;
+        mxA = (Incremento % 5) * 64;
+        myA = (Incremento / 5) * 52;
         g2d = bi.createGraphics();
         g2d.fillRect(0, 0, AnchoVentana, AltoVentana);
         if (ataca == true){
@@ -158,8 +165,6 @@ public class recreacion extends JFrame {
                 case "Elfo":
                     switch (posicion[0]) {
                         case "arriba":
-                            mxA = (Incremento % 6) * 64;
-                            myA = (Incremento / 6) * 52;
                             g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
                             break;
                         case "abajo":
@@ -168,8 +173,6 @@ public class recreacion extends JFrame {
                             g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
                             break;
                         case "derecha":
-                            mxA = (Incremento % 6) * 64;
-                            myA = (Incremento / 6) * 52;
                             g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
                             break;
                         case "izquierda":
@@ -261,7 +264,6 @@ public class recreacion extends JFrame {
     }
 
     public static void inicia() {
-        new recreacion().setVisible(true);
         
         Animacion animar = new Animacion();
         switch(eleccion){
@@ -280,5 +282,6 @@ public class recreacion extends JFrame {
         }
         animar.moverse();
         personaje = animar.getPersonaje();
+        new recreacion().setVisible(true); 
     }
 }

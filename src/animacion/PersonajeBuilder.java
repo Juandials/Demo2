@@ -19,4 +19,12 @@ public abstract class PersonajeBuilder {
     public abstract void atacaAbajo();
     public abstract void atacaDerecha();
     public abstract void atacaIzquierda();
+    public abstract int atacaArribaX();
+    public abstract int atacaArribaY();
+    public abstract int atacaAbajoX();
+    public abstract int atacaAbajoY();
+    public abstract int atacaIzquierdaX();
+    public abstract int atacaIzquierdaY();
+    public abstract int atacaDerechaX();
+    public abstract int atacaDerechaY();
 }
