@@ -46,42 +46,42 @@ public class HumanoBuilder extends PersonajeBuilder{
     }
 
     @Override
-    public int atacaArribaX() {
+    public void atacaArribaX() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int atacaArribaY() {
+    public void atacaArribaY() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int atacaAbajoX() {
+    public void atacaAbajoX() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int atacaAbajoY() {
+    public void atacaAbajoY() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int atacaIzquierdaX() {
+    public void atacaIzquierdaX() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int atacaIzquierdaY() {
+    public void atacaIzquierdaY() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int atacaDerechaX() {
+    public void atacaDerechaX() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int atacaDerechaY() {
+    public void atacaDerechaY() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

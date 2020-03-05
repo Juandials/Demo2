@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 public class recreacion extends JFrame {
 
     static Personaje personaje;
+    Animacion animar = new Animacion();
     private final int AnchoVentana = 500;
     private final int AltoVentana = 500;
     Thread hilo;
@@ -48,7 +49,7 @@ public class recreacion extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 int tecla = e.getKeyCode();
-                System.out.println(tecla);
+                //System.out.println(tecla);
                 switch(e.getKeyCode()){
                     case KeyEvent.VK_UP:
                         posicion[0] = posicion[1];
@@ -120,20 +121,18 @@ public class recreacion extends JFrame {
                         }
                         break;
                     case KeyEvent.VK_C:
+                        animar.atacar();
                         posicion[0] = posicion[1];
                         switch (posicion[1]) {
                             case "arriba":
-                                img = h.getImage(this.getClass().getResource(personaje.getAtacaArriba()));
-                                mxA=personaje.getAtacaArribaX();
-                                myA=personaje.getAtacaArribaY();
+                                img = h.getImage(this.getClass().getResource(personaje.getAtacaArriba()));                                
                                 break;
                             case "abajo":
                                 img = h.getImage(this.getClass().getResource(personaje.getAtacaAbajo()));
                                 break;
                             case "derecha":
                                 img = h.getImage(this.getClass().getResource(personaje.getAtacaDerecha()));
-                                mxA=personaje.getAtacaDerechaX();
-                                myA=personaje.getAtacaDerechaY();
+                                
                                 break;
                             case "izquierda":
                                 img = h.getImage(this.getClass().getResource(personaje.getAtacaIzquierda()));
@@ -144,7 +143,7 @@ public class recreacion extends JFrame {
                         if (Incremento > 5) {
                             Incremento = 0;
                         }
-                        personaje.setIncremento(Incremento);
+                        
                         break;
                 }
             }
@@ -161,10 +160,14 @@ public class recreacion extends JFrame {
         g2d = bi.createGraphics();
         g2d.fillRect(0, 0, AnchoVentana, AltoVentana);
         if (ataca == true){
+            personaje.setIncremento(Incremento);
+            
             switch (eleccion) {
                 case "Elfo":
                     switch (posicion[0]) {
                         case "arriba":
+                            mxA=personaje.getAtacaArribaX();
+                            myA=personaje.getAtacaArribaY();
                             g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
                             break;
                         case "abajo":
@@ -173,6 +176,8 @@ public class recreacion extends JFrame {
                             g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
                             break;
                         case "derecha":
+                            mxA=personaje.getAtacaDerechaX();
+                            myA=personaje.getAtacaDerechaY();
                             g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
                             break;
                         case "izquierda":
@@ -263,9 +268,7 @@ public class recreacion extends JFrame {
         repaint();
     }
 
-    public static void inicia() {
-        
-        Animacion animar = new Animacion();
+    public void inicia() {       
         switch(eleccion){
             case "Elfo":
                 animar.SetPersonajeBuilder(new ElfoBuilder());

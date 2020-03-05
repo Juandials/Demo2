@@ -47,51 +47,48 @@ public class ElfoBuilder extends PersonajeBuilder {
     }
 
     @Override
-    public int atacaArribaX() {
+    public void atacaArribaX() {
         Incremento = personaje.getIncremento();
-        personaje.setAtacaArribaX(mxA = (Incremento % 6) * 64);
-        return mxA;
+        int mxA  = (Incremento % 6) * 64;
+        personaje.setAtacaArribaX(mxA);
+        System.out.println("ATACANDO ARRIBA X");
     }
 
     @Override
-    public int atacaArribaY() {
+    public void atacaArribaY() {
         Incremento = personaje.getIncremento();
-        personaje.setAtacaArribaX(myA = (Incremento / 6) * 52);
-        return myA;
+        int myA = (Incremento / 6) * 52;
+        personaje.setAtacaArribaY(myA);
     }
 
     @Override
-    public int atacaAbajoX() {
-        return 0;
+    public void atacaAbajoX() {
     }
 
     @Override
-    public int atacaAbajoY() {
-        return 0;
+    public void atacaAbajoY() {
     }
 
     @Override
-    public int atacaIzquierdaX() { 
-        return 0;
+    public void atacaIzquierdaX() { 
     }
 
     @Override
-    public int atacaIzquierdaY() {
-        return 0;
+    public void atacaIzquierdaY() {
     }
 
     @Override
-    public int atacaDerechaX() {
+    public void atacaDerechaX() {
         Incremento = personaje.getIncremento();
-        personaje.setAtacaDerechaX(mxA = (Incremento % 6) * 64);
-        return mxA;
+        int mxA = (Incremento % 6) * 64;
+        personaje.setAtacaDerechaX(mxA);
     }
 
     @Override
-    public int atacaDerechaY() {
+    public void atacaDerechaY() {
         Incremento = personaje.getIncremento();
-        personaje.setAtacaDerechaX(myA = (Incremento / 6) * 52);
-        return myA;
+        int myA = (Incremento / 6) * 52;
+        personaje.setAtacaDerechaY(myA);
     }
     
 }

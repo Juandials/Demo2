@@ -15,6 +15,17 @@ public class Animacion {
         personajeBuilder.atacaIzquierda();
     }
     
+    public void atacar(){
+        //personajeBuilder.getPersonaje();
+        personajeBuilder.atacaIzquierdaX();        
+        personajeBuilder.atacaIzquierdaY();
+        personajeBuilder.atacaArribaX();
+        personajeBuilder.atacaArribaY();
+        personajeBuilder.atacaAbajoX();
+        personajeBuilder.atacaAbajoY();
+        personajeBuilder.atacaDerechaX();
+        personajeBuilder.atacaDerechaY();
+    }
     public void SetPersonajeBuilder(PersonajeBuilder pb){
         personajeBuilder = pb;
     }

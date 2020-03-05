@@ -6,7 +6,7 @@ import productos.*;
 public class gui extends javax.swing.JFrame {
 
     private String seleccion;
-
+    recreacion r = new recreacion();
     public gui() {
         initComponents();
         seleccion = this.jComboBox1.getSelectedItem().toString();
@@ -159,8 +159,8 @@ public class gui extends javax.swing.JFrame {
     }
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        recreacion.eleccion = this.seleccion;
-        recreacion.inicia();
+        r.eleccion = this.seleccion;
+        r.inicia();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {
