@@ -1,6 +1,7 @@
 package gui;
 
 import animacion.*;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -14,7 +15,6 @@ import javax.swing.JFrame;
 public class recreacion extends JFrame {
 
     static Personaje personaje;
-    Animacion animar = new Animacion();
     private final int AnchoVentana = 500;
     private final int AltoVentana = 500;
     Thread hilo;
@@ -33,7 +33,6 @@ public class recreacion extends JFrame {
     boolean ataca = false;
     String[] posicion = {"null", "null"};
     public static String eleccion;
-    int mxA,myA;
     
     public recreacion() {
         fondo = h.getImage(this.getClass().getResource("/assets/map22x15_claro.png"));
@@ -48,8 +47,7 @@ public class recreacion extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                int tecla = e.getKeyCode();
-                //System.out.println(tecla);
+                
                 switch(e.getKeyCode()){
                     case KeyEvent.VK_UP:
                         posicion[0] = posicion[1];
@@ -121,18 +119,16 @@ public class recreacion extends JFrame {
                         }
                         break;
                     case KeyEvent.VK_C:
-                        animar.atacar();
                         posicion[0] = posicion[1];
                         switch (posicion[1]) {
                             case "arriba":
-                                img = h.getImage(this.getClass().getResource(personaje.getAtacaArriba()));                                
+                                img = h.getImage(this.getClass().getResource(personaje.getAtacaArriba()));
                                 break;
                             case "abajo":
                                 img = h.getImage(this.getClass().getResource(personaje.getAtacaAbajo()));
                                 break;
                             case "derecha":
                                 img = h.getImage(this.getClass().getResource(personaje.getAtacaDerecha()));
-                                
                                 break;
                             case "izquierda":
                                 img = h.getImage(this.getClass().getResource(personaje.getAtacaIzquierda()));
@@ -143,132 +139,55 @@ public class recreacion extends JFrame {
                         if (Incremento > 5) {
                             Incremento = 0;
                         }
-                        
                         break;
                 }
             }
         });
         setFocusable(true);
-        
     }
     
     @Override
     public void paint(Graphics g) {
         g.drawImage(bi, 0, 0, null);
-        mxA = (Incremento % 5) * 64;
-        myA = (Incremento / 5) * 52;
+        int mxA = (Incremento % personaje.getNumSpritesMov()) * personaje.getSpriteMoverX();
+        int myA = (Incremento / personaje.getNumSpritesMov()) * personaje.getSpriteMoverY();
         g2d = bi.createGraphics();
         g2d.fillRect(0, 0, AnchoVentana, AltoVentana);
-        if (ataca == true){
-            personaje.setIncremento(Incremento);
-            
-            switch (eleccion) {
-                case "Elfo":
-                    switch (posicion[0]) {
-                        case "arriba":
-                            mxA=personaje.getAtacaArribaX();
-                            myA=personaje.getAtacaArribaY();
-                            g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
-                            break;
-                        case "abajo":
-                            mxA = (Incremento % 6) * 64;
-                            myA = (Incremento / 6) * 52;
-                            g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
-                            break;
-                        case "derecha":
-                            mxA=personaje.getAtacaDerechaX();
-                            myA=personaje.getAtacaDerechaY();
-                            g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
-                            break;
-                        case "izquierda":
-                            mxA = (Incremento % 6) * 64;
-                            myA = (Incremento / 6) * 52;
-                            g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
-                            break;
-                    }
+        if (ataca == true) {
+            switch (posicion[0]) {
+                case "arriba":
+                    mxA = (Incremento % personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaArribaX();
+                    myA = (Incremento / personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaArribaY();
+                    g2d.drawImage(img, incx - personaje.getIncxArribaUno(), incy - personaje.getIncyArribaUno(), personaje.getIncxArribaDos() + incx, personaje.getIncyArribaDos() + incy, mxA, myA, mxA + personaje.getSpriteAtacaArribaX(), myA + personaje.getSpriteAtacaArribaY(), this);
                     break;
-                case "Enano":
-                    switch (posicion[0]) {
-                        case "derecha":
-                            mxA = (Incremento % 6) * 64;
-                            myA = (Incremento / 6) * 52;
-                            g2d.drawImage(img, incx - 10, incy - 25, 62 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
-                            break;
-                        case "arriba":
-                            mxA = (Incremento % 6) * 64;
-                            myA = (Incremento / 6) * 52;
-                            g2d.drawImage(img, incx - 10, incy - 25, 62 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
-                            break;
-                        case "abajo":
-                            mxA = (Incremento % 6) * 64;
-                            myA = (Incremento / 6) * 52;
-                            g2d.drawImage(img, incx - 10, incy - 25, 62 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
-                            break;
-                        case "izquierda":
-                            mxA = (Incremento % 6) * 64;
-                            myA = (Incremento / 6) * 52;
-                            g2d.drawImage(img, incx - 40, incy - 25, 32 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
-                            break;
-                    }
+                case "abajo":
+                    mxA = (Incremento % personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaAbajoX();
+                    myA = (Incremento / personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaAbajoY();
+                    g2d.drawImage(img, incx - personaje.getIncxAbajoUno(), incy - personaje.getIncyAbajoUno(), personaje.getIncxAbajoDos() + incx, personaje.getIncyAbajoDos() + incy, mxA, myA, mxA + personaje.getSpriteAtacaAbajoX(), myA + personaje.getSpriteAtacaAbajoY(), this);
                     break;
-                case "Humano":
-                    switch (posicion[0]) {
-                        case "derecha":
-                            mxA = (Incremento % 6) * 128;
-                            myA = (Incremento / 6) * 52;
-                            g2d.drawImage(img, incx - 24, incy - 23, 145 + incx, 50 + incy, mxA, myA, mxA + 128, myA + 52, this);
-                            break;
-                        case "izquierda":
-                            mxA = (Incremento % 6) * 128;
-                            myA = (Incremento / 6) * 52;
-                            g2d.drawImage(img, incx - 115, incy - 23, 54 + incx, 50 + incy, mxA, myA, mxA + 128, myA + 52, this);
-                            break;
-                        case "abajo":
-                            mxA = (Incremento % 6) * 112;
-                            myA = (Incremento / 6) * 80;
-                            g2d.drawImage(img, incx - 50, incy - 35, 90 + incx, 70 + incy, mxA, myA, mxA + 112, myA + 80, this);
-                            break;
-                        case "arriba":
-                            mxA = (Incremento % 6) * 112;
-                            myA = (Incremento / 6) * 80;
-                            g2d.drawImage(img, incx - 50, incy - 55, 90 + incx, 50 + incy, mxA, myA, mxA + 112, myA + 80, this);
-                            break;
-                    }
+                case "derecha":
+                    mxA = (Incremento % personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaDerechaX();
+                    myA = (Incremento / personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaDerechaY();
+                    g2d.drawImage(img, incx - personaje.getIncxDerechaUno(), incy - personaje.getIncyDerechaUno(), personaje.getIncxDerechaDos() + incx, personaje.getIncyDerechaDos() + incy, mxA, myA, mxA + personaje.getSpriteAtacaDerechaX(), myA + personaje.getSpriteAtacaDerechaY(), this);
                     break;
-                case "Orco":
-                    switch (posicion[0]) {
-                        case "derecha":
-                            mxA = (Incremento % 6) * 112;
-                            myA = (Incremento / 6) * 52;
-                            g2d.drawImage(img, incx - 40, incy - 25, 90 + incx, 50 + incy, mxA, myA, mxA + 112, myA + 52, this);
-                            break;
-                        case "izquierda":
-                            mxA = (Incremento % 6) * 112;
-                            myA = (Incremento / 6) * 52;
-                            g2d.drawImage(img, incx - 40, incy - 25, 90 + incx, 50 + incy, mxA, myA, mxA + 112, myA + 52, this);
-                            break;
-                        case "arriba":
-                            mxA = (Incremento % 6) * 112;
-                            myA = (Incremento / 6) * 112;
-                            g2d.drawImage(img, incx - 75, incy - 105, 70 + incx, 50 + incy, mxA, myA, mxA + 112, myA + 112, this);
-                            break;
-                        case "abajo":
-                            mxA = (Incremento % 6) * 112;
-                            myA = (Incremento / 6) * 112;
-                            g2d.drawImage(img, incx - 45, incy - 40, 85 + incx, 120 + incy, mxA, myA, mxA + 112, myA + 112, this);
-                            break;
-                    }
+                case "izquierda":
+                    mxA = (Incremento % personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaIzquierdaX();
+                    myA = (Incremento / personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaIzquierdaY();
+                    g2d.drawImage(img, incx - personaje.getIncxIzquierdaUno(), incy - personaje.getIncyIzquierdaUno(), personaje.getIncxIzquierdaDos() + incx, personaje.getIncyIzquierdaDos() + incy, mxA, myA, mxA + personaje.getSpriteAtacaIzquierdaX(), myA + personaje.getSpriteAtacaIzquierdaY(), this);
                     break;
             }
         } else {
-            mxA = (Incremento % 5) * 64;
-            myA = (Incremento / 5) * 52;
-            g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + 64, myA + 52, this);
+            mxA = (Incremento % personaje.getNumSpritesMov()) * personaje.getSpriteMoverX();
+            myA = (Incremento / personaje.getNumSpritesMov()) * personaje.getSpriteMoverY();
+            g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + personaje.getSpriteMoverX(), myA + personaje.getSpriteMoverY(), this);
         }
         repaint();
     }
 
-    public void inicia() {       
+    public static void inicia() {
+        new recreacion().setVisible(true);
+        
+        Animacion animar = new Animacion();
         switch(eleccion){
             case "Elfo":
                 animar.SetPersonajeBuilder(new ElfoBuilder());
@@ -285,6 +204,5 @@ public class recreacion extends JFrame {
         }
         animar.moverse();
         personaje = animar.getPersonaje();
-        new recreacion().setVisible(true); 
     }
 }

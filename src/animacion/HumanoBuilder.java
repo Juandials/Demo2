@@ -1,7 +1,7 @@
 package animacion;
 //CONCRETE BUILDER
 public class HumanoBuilder extends PersonajeBuilder{
-    int mxA, myA;
+
     public HumanoBuilder() {
     }
 
@@ -46,45 +46,143 @@ public class HumanoBuilder extends PersonajeBuilder{
     }
 
     @Override
-    public void atacaArribaX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void spriteMoverX() {
+        personaje.setSpriteMoverX(64);
     }
 
     @Override
-    public void atacaArribaY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void spriteMoverY() {
+        personaje.setSpriteMoverY(52);
     }
 
     @Override
-    public void atacaAbajoX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void numSpritesMov() {
+        personaje.setNumSpritesMov(5);
     }
 
     @Override
-    public void atacaAbajoY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void spriteAtacaArribaX() {
+        personaje.setSpriteAtacaArribaX(112);
     }
 
     @Override
-    public void atacaIzquierdaX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void spriteAtacaArribaY() {
+        personaje.setSpriteAtacaArribaY(80);
     }
 
     @Override
-    public void atacaIzquierdaY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void numSpritesAtaque() {
+        personaje.setNumSpritesAtaque(6);
     }
 
     @Override
-    public void atacaDerechaX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void spriteAtacaAbajoX() {
+        personaje.setSpriteAtacaAbajoX(112);
     }
 
     @Override
-    public void atacaDerechaY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void spriteAtacaAbajoY() {
+        personaje.setSpriteAtacaAbajoY(80);
     }
 
+    @Override
+    public void spriteAtacaIzquierdaX() {
+        personaje.setSpriteAtacaIzquierdaX(128);
+    }
 
-    
+    @Override
+    public void spriteAtacaIzquierdaY() {
+        personaje.setSpriteAtacaIzquierdaY(52);
+    }
+
+    @Override
+    public void spriteAtacaDerechaX() {
+        personaje.setSpriteAtacaDerechaX(128);
+    }
+
+    @Override
+    public void spriteAtacaDerechaY() {
+        personaje.setSpriteAtacaDerechaY(52);
+    }
+
+    @Override
+    public void incxArribaUno() {
+        personaje.setIncxArribaUno(50);
+    }
+
+    @Override
+    public void incyArribaUno() {
+        personaje.setIncyArribaUno(55);
+    }
+
+    @Override
+    public void incxArribaDos() {
+        personaje.setIncxArribaDos(90);
+    }
+
+    @Override
+    public void incyArribaDos() {
+        personaje.setIncyArribaDos(50);
+    }
+
+    @Override
+    public void incxAbajoUno() {
+        personaje.setIncxAbajoUno(50);
+    }
+
+    @Override
+    public void incyAbajoUno() {
+        personaje.setIncyAbajoUno(35);
+    }
+
+    @Override
+    public void incxAbajoDos() {
+        personaje.setIncxAbajoDos(90);
+    }
+
+    @Override
+    public void incyAbajoDos() {
+        personaje.setIncyAbajoDos(70);
+    }
+
+    @Override
+    public void incxDerechaUno() {
+        personaje.setIncxDerechaUno(24);
+    }
+
+    @Override
+    public void incyDerechaUno() {
+        personaje.setIncyDerechaUno(23);
+    }
+
+    @Override
+    public void incxDerechaDos() {
+        personaje.setIncxDerechaDos(145);
+    }
+
+    @Override
+    public void incyDerechaDos() {
+        personaje.setIncyDerechaDos(50);
+    }
+
+    @Override
+    public void incxIzquierdaUno() {
+        personaje.setIncxIzquierdaUno(115);
+    }
+
+    @Override
+    public void incyIzquierdaUno() {
+        personaje.setIncyIzquierdaUno(23);
+    }
+
+    @Override
+    public void incxIzquierdaDos() {
+        personaje.setIncxIzquierdaDos(54);
+    }
+
+    @Override
+    public void incyIzquierdaDos() {
+        personaje.setIncyIzquierdaDos(50);
+    }
+
 }
