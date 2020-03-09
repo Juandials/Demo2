@@ -1,6 +1,6 @@
 package animacion;
 //ABSTRACT BUILDER
-public abstract class PersonajeBuilder {
+public abstract class PersonajeBuilder implements Cloneable{
     protected Personaje personaje;
     
     public Personaje getPersonaje(){

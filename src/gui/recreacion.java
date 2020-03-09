@@ -1,7 +1,6 @@
 package gui;
 
 import animacion.*;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -9,14 +8,16 @@ import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 
 public class recreacion extends JFrame {
 
     static Personaje personaje;
-    private final int AnchoVentana = 500;
-    private final int AltoVentana = 500;
+    private final int AnchoVentana = 800;
+    private final int AltoVentana = 600;
     Thread hilo;
     boolean inicio = false;
     BufferedImage bi;
@@ -35,12 +36,14 @@ public class recreacion extends JFrame {
     public static String eleccion;
     
     public recreacion() {
+        
         fondo = h.getImage(this.getClass().getResource("/assets/map22x15_claro.png"));
         setSize(AnchoVentana, AltoVentana);
         setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Recreación");
         bi = new BufferedImage(AnchoVentana, AltoVentana, BufferedImage.TYPE_INT_RGB);
+        img = h.getImage(this.getClass().getResource(personaje.getDerecha()));
         inicio = true;
 
         addKeyListener(new KeyAdapter() {
@@ -117,7 +120,7 @@ public class recreacion extends JFrame {
                                 incx = incx + 4;
                             }
                         }
-                        break;
+                    break;
                     case KeyEvent.VK_C:
                         posicion[0] = posicion[1];
                         switch (posicion[1]) {
@@ -148,10 +151,10 @@ public class recreacion extends JFrame {
     
     @Override
     public void paint(Graphics g) {
-        g.drawImage(bi, 0, 0, null);
-        int mxA = (Incremento % personaje.getNumSpritesMov()) * personaje.getSpriteMoverX();
-        int myA = (Incremento / personaje.getNumSpritesMov()) * personaje.getSpriteMoverY();
         g2d = bi.createGraphics();
+        g.drawImage(bi, 0, 10, null);
+        int mxA;
+        int myA;        
         g2d.fillRect(0, 0, AnchoVentana, AltoVentana);
         if (ataca == true) {
             switch (posicion[0]) {
@@ -185,8 +188,6 @@ public class recreacion extends JFrame {
     }
 
     public static void inicia() {
-        new recreacion().setVisible(true);
-        
         Animacion animar = new Animacion();
         switch(eleccion){
             case "Elfo":
@@ -204,5 +205,8 @@ public class recreacion extends JFrame {
         }
         animar.moverse();
         personaje = animar.getPersonaje();
+        new recreacion().setVisible(true);
+        
+        
     }
 }

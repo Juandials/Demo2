@@ -1,6 +1,10 @@
 package animacion;
 //CONCRETE BUILDER
-public class ElfoBuilder extends PersonajeBuilder {
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class ElfoBuilder extends PersonajeBuilder{
 
     public ElfoBuilder() {
     }
@@ -184,5 +188,6 @@ public class ElfoBuilder extends PersonajeBuilder {
     public void incyIzquierdaDos() {
         personaje.setIncyIzquierdaDos(50);
     }
+    
    
 }
