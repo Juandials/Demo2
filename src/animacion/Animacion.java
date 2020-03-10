@@ -43,6 +43,11 @@ public class Animacion {
         personajeBuilder.incyIzquierdaDos();
     }
     
+    public void clonar() throws CloneNotSupportedException{
+        personajeBuilder.clone();
+        System.out.println("Clonado desde la raíz");
+    }
+    
     public void SetPersonajeBuilder(PersonajeBuilder pb){
         personajeBuilder = pb;
     }

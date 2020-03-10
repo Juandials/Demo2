@@ -11,6 +11,10 @@ public abstract class PersonajeBuilder implements Cloneable{
         personaje = new Personaje();
     }
     
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
+    }
+    
     public abstract void arriba();
     public abstract void abajo();
     public abstract void derecha();

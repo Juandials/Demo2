@@ -34,6 +34,8 @@ public class recreacion extends JFrame {
     boolean ataca = false;
     String[] posicion = {"null", "null"};
     public static String eleccion;
+    public static boolean clonar = false;
+    static Animacion animar = new Animacion();
     
     public recreacion() {
         
@@ -121,6 +123,18 @@ public class recreacion extends JFrame {
                             }
                         }
                     break;
+                    case KeyEvent.VK_D:
+                        clonar = true;
+                        if(clonar == true){
+                            System.out.println("Clonando");
+                            try {
+                                animar.clonar();
+                                System.out.println("Clonado con éxito");
+                            } catch (CloneNotSupportedException ex) {
+                                Logger.getLogger(recreacion.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                        break;
                     case KeyEvent.VK_C:
                         posicion[0] = posicion[1];
                         switch (posicion[1]) {
@@ -188,7 +202,7 @@ public class recreacion extends JFrame {
     }
 
     public static void inicia() {
-        Animacion animar = new Animacion();
+        
         switch(eleccion){
             case "Elfo":
                 animar.SetPersonajeBuilder(new ElfoBuilder());
