@@ -1,6 +1,6 @@
 package animacion;
 //CLASE PRODUCTO
-public class Personaje {
+public class Personaje implements Cloneable{
     private String arriba = "";
     private String abajo = "";
     private String izquierda = "";
@@ -328,4 +328,9 @@ public class Personaje {
     public void setDerecha(String derecha) {
         this.derecha = derecha;
     }
+    
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
+    }
+
 }
