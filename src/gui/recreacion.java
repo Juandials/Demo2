@@ -17,7 +17,8 @@ import javax.swing.JFrame;
 public class recreacion extends JFrame {
 
     static Personaje personaje;
-    Personaje personajetemp;
+
+    static ArrayList <Personaje> personajetemp = new ArrayList<>();
     static ArrayList <Object> arreglo_personajes = new ArrayList<>();
     private final int AnchoVentana = 800;
     private final int AltoVentana = 600;
@@ -177,42 +178,44 @@ public class recreacion extends JFrame {
         g2d = bi.createGraphics();
         int x=0;
         int y=10;
+        int mxA;
+        int myA;   
         for(i=0;i<arreglo_personajes.size();i++)
         {  
-            personajetemp = (Personaje) arreglo_personajes.get(i);
+            personajetemp.add((Personaje) arreglo_personajes.get(i));
             g.drawImage(bi, x, y, null);
-            y=y+30;
-            int mxA;
-            int myA;        
+           
+                 
             g2d.fillRect(0, 0, AnchoVentana, AltoVentana);
             if (ataca == true) {
                 switch (posicion[0]) {
                     case "arriba":
-                        mxA = (Incremento % personajetemp.getNumSpritesAtaque()) * personajetemp.getSpriteAtacaArribaX();
-                        myA = (Incremento / personajetemp.getNumSpritesAtaque()) * personajetemp.getSpriteAtacaArribaY();
-                        g2d.drawImage(img, incx - personajetemp.getIncxArribaUno(), incy - personajetemp.getIncyArribaUno(), personajetemp.getIncxArribaDos() + incx, personajetemp.getIncyArribaDos() + incy, mxA, myA, mxA + personajetemp.getSpriteAtacaArribaX(), myA + personajetemp.getSpriteAtacaArribaY(), this);
+                        mxA = (Incremento % personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaArribaX();
+                        myA = (Incremento / personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaArribaY();
+                        g2d.drawImage(img, incx - personajetemp.get(i).getIncxArribaUno(), incy - personajetemp.get(i).getIncyArribaUno(), personajetemp.get(i).getIncxArribaDos() + incx, personajetemp.get(i).getIncyArribaDos() + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteAtacaArribaX(), myA + personajetemp.get(i).getSpriteAtacaArribaY(), this);
                         break;
                     case "abajo":
-                        mxA = (Incremento % personajetemp.getNumSpritesAtaque()) * personajetemp.getSpriteAtacaAbajoX();
-                        myA = (Incremento / personajetemp.getNumSpritesAtaque()) * personajetemp.getSpriteAtacaAbajoY();
-                        g2d.drawImage(img, incx - personajetemp.getIncxAbajoUno(), incy - personajetemp.getIncyAbajoUno(), personajetemp.getIncxAbajoDos() + incx, personajetemp.getIncyAbajoDos() + incy, mxA, myA, mxA + personajetemp.getSpriteAtacaAbajoX(), myA + personajetemp.getSpriteAtacaAbajoY(), this);
+                        mxA = (Incremento % personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaAbajoX();
+                        myA = (Incremento / personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaAbajoY();
+                        g2d.drawImage(img, incx - personajetemp.get(i).getIncxAbajoUno(), incy - personajetemp.get(i).getIncyAbajoUno(), personajetemp.get(i).getIncxAbajoDos() + incx, personajetemp.get(i).getIncyAbajoDos() + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteAtacaAbajoX(), myA + personajetemp.get(i).getSpriteAtacaAbajoY(), this);
                         break;
                     case "derecha":
-                        mxA = (Incremento % personajetemp.getNumSpritesAtaque()) * personajetemp.getSpriteAtacaDerechaX();
-                        myA = (Incremento / personajetemp.getNumSpritesAtaque()) * personajetemp.getSpriteAtacaDerechaY();
-                        g2d.drawImage(img, incx - personajetemp.getIncxDerechaUno(), incy - personajetemp.getIncyDerechaUno(), personajetemp.getIncxDerechaDos() + incx, personajetemp.getIncyDerechaDos() + incy, mxA, myA, mxA + personajetemp.getSpriteAtacaDerechaX(), myA + personajetemp.getSpriteAtacaDerechaY(), this);
+                        mxA = (Incremento % personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaDerechaX();
+                        myA = (Incremento / personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaDerechaY();
+                        g2d.drawImage(img, incx - personajetemp.get(i).getIncxDerechaUno(), incy - personajetemp.get(i).getIncyDerechaUno(), personajetemp.get(i).getIncxDerechaDos() + incx, personajetemp.get(i).getIncyDerechaDos() + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteAtacaDerechaX(), myA + personajetemp.get(i).getSpriteAtacaDerechaY(), this);
                         break;
                     case "izquierda":
-                        mxA = (Incremento % personajetemp.getNumSpritesAtaque()) * personajetemp.getSpriteAtacaIzquierdaX();
-                        myA = (Incremento / personajetemp.getNumSpritesAtaque()) * personajetemp.getSpriteAtacaIzquierdaY();
-                        g2d.drawImage(img, incx - personajetemp.getIncxIzquierdaUno(), incy - personajetemp.getIncyIzquierdaUno(), personajetemp.getIncxIzquierdaDos() + incx, personajetemp.getIncyIzquierdaDos() + incy, mxA, myA, mxA + personajetemp.getSpriteAtacaIzquierdaX(), myA + personajetemp.getSpriteAtacaIzquierdaY(), this);
+                        mxA = (Incremento % personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaIzquierdaX();
+                        myA = (Incremento / personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaIzquierdaY();
+                        g2d.drawImage(img, incx - personajetemp.get(i).getIncxIzquierdaUno(), incy - personajetemp.get(i).getIncyIzquierdaUno(), personajetemp.get(i).getIncxIzquierdaDos() + incx, personajetemp.get(i).getIncyIzquierdaDos() + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteAtacaIzquierdaX(), myA + personajetemp.get(i).getSpriteAtacaIzquierdaY(), this);
                         break;
                 }
             } else {
-                mxA = (Incremento % personajetemp.getNumSpritesMov()) * personajetemp.getSpriteMoverX();
-                myA = (Incremento / personajetemp.getNumSpritesMov()) * personajetemp.getSpriteMoverY();
-                g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + personajetemp.getSpriteMoverX(), myA + personajetemp.getSpriteMoverY(), this);
+                mxA = (Incremento % personajetemp.get(i).getNumSpritesMov()) * personajetemp.get(i).getSpriteMoverX();
+                myA = (Incremento / personajetemp.get(i).getNumSpritesMov()) * personajetemp.get(i).getSpriteMoverY();
+                g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteMoverX(), myA + personajetemp.get(i).getSpriteMoverY(), this);
             }
+             y=y+30;
         }        
         
         repaint();
