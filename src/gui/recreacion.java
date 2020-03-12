@@ -1,12 +1,14 @@
 package gui;
 
 import animacion.*;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -14,7 +16,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 
-public class recreacion extends JFrame {
+public class recreacion extends JFrame  {
 
     static Personaje personaje;
 
@@ -25,7 +27,7 @@ public class recreacion extends JFrame {
     Thread hilo;
     boolean inicio = false;
     BufferedImage bi;
-    ArrayList <Image> img = new ArrayList<>();
+    Image img,fondo;
     Toolkit h = Toolkit.getDefaultToolkit();
     Graphics2D g2d;
     int Incremento = 0;
@@ -41,20 +43,17 @@ public class recreacion extends JFrame {
     public static boolean clonar = false;
     static Animacion animar = new Animacion();
     int i=0;
+    public BufferStrategy strategy;
     
     public recreacion() {
         
+        fondo = h.getImage(this.getClass().getResource("/assets/map22x15_claro.png"));
         setSize(AnchoVentana, AltoVentana);
         setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Recreación");
         bi = new BufferedImage(AnchoVentana, AltoVentana, BufferedImage.TYPE_INT_RGB);
-        for(i=0;i<arreglo_personajes.size();i++)
-        {
-            personajetemp.add((Personaje) arreglo_personajes.get(i));
-            img.add(h.getImage(this.getClass().getResource(personajetemp.get(i).getDerecha())));
-        }
-        img.add(h.getImage(this.getClass().getResource(personaje.getDerecha())));
+        img = h.getImage(this.getClass().getResource(personaje.getDerecha()));
         inicio = true;
 
         addKeyListener(new KeyAdapter() {
@@ -70,7 +69,7 @@ public class recreacion extends JFrame {
                         posicion[0] = posicion[1];
                         posicion[1] = "arriba";
                         ataca = false;
-                        img.add(h.getImage(this.getClass().getResource(personaje.getArriba())));
+                        img = h.getImage(this.getClass().getResource(personaje.getArriba()));
                         Incremento++;
                         if (Incremento > 4){
                             Incremento = 0;
@@ -86,7 +85,7 @@ public class recreacion extends JFrame {
                         posicion[0] = posicion[1];
                         posicion[1] = "abajo";
                         ataca = false;
-                        img.add(h.getImage(this.getClass().getResource(personaje.getAbajo())));
+                        img = h.getImage(this.getClass().getResource(personaje.getAbajo()));
 
                         Incremento++;
 
@@ -104,7 +103,7 @@ public class recreacion extends JFrame {
                         posicion[0] = posicion[1];
                         posicion[1] = "derecha";
                         ataca = false;
-                        img.add(h.getImage(this.getClass().getResource(personaje.getDerecha())));
+                        img = h.getImage(this.getClass().getResource(personaje.getDerecha()));
                         Incremento++;
 
                         if (Incremento > 4) {
@@ -122,7 +121,7 @@ public class recreacion extends JFrame {
                         posicion[0] = posicion[1];
                         posicion[1] = "izquierda";
                         ataca = false;
-                        img.add(h.getImage(this.getClass().getResource(personaje.getIzquierda())));
+                        img = h.getImage(this.getClass().getResource(personaje.getIzquierda()));
                         Incremento++;
 
                         if (Incremento > 4) {
@@ -153,16 +152,16 @@ public class recreacion extends JFrame {
                         posicion[0] = posicion[1];
                         switch (posicion[1]) {
                             case "arriba":
-                                img.add(h.getImage(this.getClass().getResource(personaje.getAtacaArriba())));
+                                img = h.getImage(this.getClass().getResource(personaje.getAtacaArriba()));
                                 break;
                             case "abajo":
-                                img.add(h.getImage(this.getClass().getResource(personaje.getAtacaAbajo())));
+                                img = h.getImage(this.getClass().getResource(personaje.getAtacaAbajo()));
                                 break;
                             case "derecha":
-                                img.add(h.getImage(this.getClass().getResource(personaje.getAtacaDerecha())));
+                                img = h.getImage(this.getClass().getResource(personaje.getAtacaDerecha()));
                                 break;
                             case "izquierda":
-                                img.add(h.getImage(this.getClass().getResource(personaje.getAtacaIzquierda())));
+                                img = h.getImage(this.getClass().getResource(personaje.getAtacaIzquierda()));
                                 break;
                         }
                         ataca = true;
@@ -176,6 +175,9 @@ public class recreacion extends JFrame {
         });
         setFocusable(true);
     }
+    public void initComponent(){
+        
+    }
     
     @Override
     public void paint(Graphics g) {
@@ -184,42 +186,40 @@ public class recreacion extends JFrame {
         int y=10;
         int mxA;
         int myA;   
-        for(i=0;i<img.size();i++)
+        for(i=0;i<arreglo_personajes.size();i++)
         {  
             personajetemp.add((Personaje) arreglo_personajes.get(i));
             g.drawImage(bi, x, y, null);
-           
-                 
-            g2d.fillRect(0, 0, AnchoVentana, AltoVentana);
+            g2d.drawImage(fondo, 0, 0, AnchoVentana, AltoVentana, this);
             if (ataca == true) {
                 switch (posicion[0]) {
                     case "arriba":
                         mxA = (Incremento % personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaArribaX();
                         myA = (Incremento / personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaArribaY();
-                        g2d.drawImage(img.get(i), incx - personajetemp.get(i).getIncxArribaUno(), incy - personajetemp.get(i).getIncyArribaUno(), personajetemp.get(i).getIncxArribaDos() + incx, personajetemp.get(i).getIncyArribaDos() + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteAtacaArribaX(), myA + personajetemp.get(i).getSpriteAtacaArribaY(), this);
+                        g2d.drawImage(img, incx - personajetemp.get(i).getIncxArribaUno(), incy - personajetemp.get(i).getIncyArribaUno(), personajetemp.get(i).getIncxArribaDos() + incx, personajetemp.get(i).getIncyArribaDos() + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteAtacaArribaX(), myA + personajetemp.get(i).getSpriteAtacaArribaY(), this);
                         break;
                     case "abajo":
                         mxA = (Incremento % personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaAbajoX();
                         myA = (Incremento / personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaAbajoY();
-                        g2d.drawImage(img.get(i), incx - personajetemp.get(i).getIncxAbajoUno(), incy - personajetemp.get(i).getIncyAbajoUno(), personajetemp.get(i).getIncxAbajoDos() + incx, personajetemp.get(i).getIncyAbajoDos() + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteAtacaAbajoX(), myA + personajetemp.get(i).getSpriteAtacaAbajoY(), this);
+                        g2d.drawImage(img, incx - personajetemp.get(i).getIncxAbajoUno(), incy - personajetemp.get(i).getIncyAbajoUno(), personajetemp.get(i).getIncxAbajoDos() + incx, personajetemp.get(i).getIncyAbajoDos() + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteAtacaAbajoX(), myA + personajetemp.get(i).getSpriteAtacaAbajoY(), this);
                         break;
                     case "derecha":
                         mxA = (Incremento % personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaDerechaX();
                         myA = (Incremento / personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaDerechaY();
-                        g2d.drawImage(img.get(i), incx - personajetemp.get(i).getIncxDerechaUno(), incy - personajetemp.get(i).getIncyDerechaUno(), personajetemp.get(i).getIncxDerechaDos() + incx, personajetemp.get(i).getIncyDerechaDos() + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteAtacaDerechaX(), myA + personajetemp.get(i).getSpriteAtacaDerechaY(), this);
+                        g2d.drawImage(img, incx - personajetemp.get(i).getIncxDerechaUno(), incy - personajetemp.get(i).getIncyDerechaUno(), personajetemp.get(i).getIncxDerechaDos() + incx, personajetemp.get(i).getIncyDerechaDos() + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteAtacaDerechaX(), myA + personajetemp.get(i).getSpriteAtacaDerechaY(), this);
                         break;
                     case "izquierda":
                         mxA = (Incremento % personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaIzquierdaX();
                         myA = (Incremento / personajetemp.get(i).getNumSpritesAtaque()) * personajetemp.get(i).getSpriteAtacaIzquierdaY();
-                        g2d.drawImage(img.get(i), incx - personajetemp.get(i).getIncxIzquierdaUno(), incy - personajetemp.get(i).getIncyIzquierdaUno(), personajetemp.get(i).getIncxIzquierdaDos() + incx, personajetemp.get(i).getIncyIzquierdaDos() + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteAtacaIzquierdaX(), myA + personajetemp.get(i).getSpriteAtacaIzquierdaY(), this);
+                        g2d.drawImage(img, incx - personajetemp.get(i).getIncxIzquierdaUno(), incy - personajetemp.get(i).getIncyIzquierdaUno(), personajetemp.get(i).getIncxIzquierdaDos() + incx, personajetemp.get(i).getIncyIzquierdaDos() + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteAtacaIzquierdaX(), myA + personajetemp.get(i).getSpriteAtacaIzquierdaY(), this);
                         break;
                 }
             } else {
                 mxA = (Incremento % personajetemp.get(i).getNumSpritesMov()) * personajetemp.get(i).getSpriteMoverX();
                 myA = (Incremento / personajetemp.get(i).getNumSpritesMov()) * personajetemp.get(i).getSpriteMoverY();
-                g2d.drawImage(img.get(i), incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteMoverX(), myA + personajetemp.get(i).getSpriteMoverY(), this);
+                g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteMoverX(), myA + personajetemp.get(i).getSpriteMoverY(), this);
             }
-             y=y+30;
+             y=y+100;
         }        
         
         repaint();
