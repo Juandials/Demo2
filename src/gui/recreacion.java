@@ -15,11 +15,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class recreacion extends JFrame  {
+public class recreacion extends JPanel{
 
     static Personaje personaje;
-
+    JFrame ventana = new JFrame();
     static ArrayList <Personaje> personajetemp = new ArrayList<>();
     static ArrayList <Object> arreglo_personajes = new ArrayList<>();
     private final int AnchoVentana = 800;
@@ -48,19 +49,19 @@ public class recreacion extends JFrame  {
     public recreacion() {
         
         fondo = h.getImage(this.getClass().getResource("/assets/map22x15_claro.png"));
-        setSize(AnchoVentana, AltoVentana);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setTitle("Recreación");
+        ventana.setSize(AnchoVentana, AltoVentana);
+        ventana.setResizable(false);
+        ventana.setLocationRelativeTo(null);
+        ventana.setTitle("Recreación");
+        ventana.setVisible(true);
+        ventana.getContentPane().add(this);
         bi = new BufferedImage(AnchoVentana, AltoVentana, BufferedImage.TYPE_INT_RGB);
         img = h.getImage(this.getClass().getResource(personaje.getDerecha()));
         inicio = true;
-
         addKeyListener(new KeyAdapter() {
-
             public Object clonar() throws CloneNotSupportedException{        
-        return personaje.clone();
-    }
+                return personaje.clone();
+            }
             @Override
             public void keyPressed(KeyEvent e) {
                 
@@ -139,14 +140,9 @@ public class recreacion extends JFrame  {
                         clonar = true;
                         try {
                             arreglo_personajes.add(this.clonar());
-                            System.out.println("Clonado con éxito");
                         } catch (CloneNotSupportedException ex) {
                             Logger.getLogger(recreacion.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        
-                        for(int j=0;j<=i;j++)
-                        System.out.println(arreglo_personajes.get(j));
-                        i++;
                         break;
                     case KeyEvent.VK_C:
                         posicion[0] = posicion[1];
