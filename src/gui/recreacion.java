@@ -9,8 +9,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -57,12 +55,8 @@ public class recreacion extends JPanel{
         img = h.getImage(this.getClass().getResource(personaje.getDerecha()));
         inicio = true;
         addKeyListener(new KeyAdapter() {
-            public Object clonar() throws CloneNotSupportedException{        
-                return personaje.clone();
-            }
             @Override
             public void keyPressed(KeyEvent e) {
-                
                 switch(e.getKeyCode()){
                     case KeyEvent.VK_UP:
                         posicion[0] = posicion[1];
@@ -104,7 +98,6 @@ public class recreacion extends JPanel{
                         ataca = false;
                         img = h.getImage(this.getClass().getResource(personaje.getDerecha()));
                         Incremento++;
-
                         if (Incremento > 4) {
                             Incremento = 0;
                         }
@@ -115,14 +108,12 @@ public class recreacion extends JPanel{
                             }
                         }
                         break;
-
                     case KeyEvent.VK_LEFT:
                         posicion[0] = posicion[1];
                         posicion[1] = "izquierda";
                         ataca = false;
                         img = h.getImage(this.getClass().getResource(personaje.getIzquierda()));
                         Incremento++;
-
                         if (Incremento > 4) {
                             Incremento = 0;
                         }
@@ -133,15 +124,6 @@ public class recreacion extends JPanel{
                             }
                         }
                     break;
-                    
-                    case KeyEvent.VK_D:                        
-                        clonar = true;
-                        try {
-                            arreglo_personajes.add(this.clonar());
-                        } catch (CloneNotSupportedException ex) {
-                            Logger.getLogger(recreacion.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        break;
                     case KeyEvent.VK_C:
                         posicion[0] = posicion[1];
                         switch (posicion[1]) {
@@ -174,41 +156,16 @@ public class recreacion extends JPanel{
         g.drawImage(bi, 0, 0, null);
         int mxA;
         int myA;
+        int y=0;
+        int aumentoSpriteY;
         g2d = bi.createGraphics();
         g2d.drawImage(fondo, 0, 0, AnchoVentana, AltoVentana, this);
         g2d.drawImage(pocion, 390, 400, 60, 60, this);
-        if (poblacion.equals("Individual")) {
-            if (ataca == true) {
-                switch (posicion[0]) {
-                    case "arriba":
-                        mxA = (Incremento % personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaArribaX();
-                        myA = (Incremento / personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaArribaY();
-                        g2d.drawImage(img, incx - personaje.getIncxArribaUno(), incy - personaje.getIncyArribaUno(), personaje.getIncxArribaDos() + incx, personaje.getIncyArribaDos() + incy, mxA, myA, mxA + personaje.getSpriteAtacaArribaX(), myA + personaje.getSpriteAtacaArribaY(), this);
-                        break;
-                    case "abajo":
-                        mxA = (Incremento % personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaAbajoX();
-                        myA = (Incremento / personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaAbajoY();
-                        g2d.drawImage(img, incx - personaje.getIncxAbajoUno(), incy - personaje.getIncyAbajoUno(), personaje.getIncxAbajoDos() + incx, personaje.getIncyAbajoDos() + incy, mxA, myA, mxA + personaje.getSpriteAtacaAbajoX(), myA + personaje.getSpriteAtacaAbajoY(), this);
-                        break;
-                    case "derecha":
-                        mxA = (Incremento % personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaDerechaX();
-                        myA = (Incremento / personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaDerechaY();
-                        g2d.drawImage(img, incx - personaje.getIncxDerechaUno(), incy - personaje.getIncyDerechaUno(), personaje.getIncxDerechaDos() + incx, personaje.getIncyDerechaDos() + incy, mxA, myA, mxA + personaje.getSpriteAtacaDerechaX(), myA + personaje.getSpriteAtacaDerechaY(), this);
-                        break;
-                    case "izquierda":
-                        mxA = (Incremento % personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaIzquierdaX();
-                        myA = (Incremento / personaje.getNumSpritesAtaque()) * personaje.getSpriteAtacaIzquierdaY();
-                        g2d.drawImage(img, incx - personaje.getIncxIzquierdaUno(), incy - personaje.getIncyIzquierdaUno(), personaje.getIncxIzquierdaDos() + incx, personaje.getIncyIzquierdaDos() + incy, mxA, myA, mxA + personaje.getSpriteAtacaIzquierdaX(), myA + personaje.getSpriteAtacaIzquierdaY(), this);
-                        break;
-                }
-            } else {
-                mxA = (Incremento % personaje.getNumSpritesMov()) * personaje.getSpriteMoverX();
-                myA = (Incremento / personaje.getNumSpritesMov()) * personaje.getSpriteMoverY();
-                g2d.drawImage(img, incx - 25, incy - 25, 50 + incx, 50 + incy, mxA, myA, mxA + personaje.getSpriteMoverX(), myA + personaje.getSpriteMoverY(), this);
-            }
-        } else {
-            int y = 0;
-            System.out.println(arreglo_personajes.size());
+        if(poblacion.equals("Individual")){
+            aumentoSpriteY = 0;
+        }else{
+            aumentoSpriteY = 80;
+        }
             for (i = 0; i < arreglo_personajes.size(); i++) {
                 personajetemp.add((Personaje) arreglo_personajes.get(i));
                 if (ataca == true) {
@@ -239,12 +196,10 @@ public class recreacion extends JPanel{
                     myA = (Incremento / personajetemp.get(i).getNumSpritesMov()) * personajetemp.get(i).getSpriteMoverY();
                     g2d.drawImage(img, incx - 25, incy - 25 + y, 50 + incx, y + 50 + incy, mxA, myA, mxA + personajetemp.get(i).getSpriteMoverX(), myA + personajetemp.get(i).getSpriteMoverY(), this);
                 }
-                y = y + 80;
+                y = y + aumentoSpriteY;
             }
-        }
         repaint();
     }
-
     public static void inicia() {
         
         switch(eleccion){
@@ -263,7 +218,11 @@ public class recreacion extends JPanel{
         }
         animar.moverse();
         personaje = animar.getPersonaje();
+        Personaje personajeClonUno = (Personaje) personaje.clonar();
+        Personaje personajeClonDos = (Personaje) personaje.clonar();
         arreglo_personajes.add(personaje);
+        arreglo_personajes.add(personajeClonUno);
+        arreglo_personajes.add(personajeClonDos);
         new recreacion().setVisible(true);
     }
 }
