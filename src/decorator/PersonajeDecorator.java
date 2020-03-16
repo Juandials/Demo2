@@ -1,4 +1,6 @@
-package animacion;
+package decorator;
+
+import animacion.Personaje;
 
 public abstract class PersonajeDecorator extends Personaje{
     private Personaje personaje;
@@ -39,7 +41,7 @@ public abstract class PersonajeDecorator extends Personaje{
     }
 
     public String getAtacaAbajo() {
-        return getPersonaje().getAbajo();
+        return getPersonaje().getAtacaAbajo();
     }
 
     public String getAtacaArriba() {

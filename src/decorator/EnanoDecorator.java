@@ -1,4 +1,6 @@
-package animacion;
+package decorator;
+
+import animacion.Personaje;
 
 public class EnanoDecorator extends PersonajeDecorator{
     

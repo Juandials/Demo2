@@ -1,8 +1,10 @@
-package animacion;
+package decorator;
 
-public class ElfoDecorator extends PersonajeDecorator{
+import animacion.Personaje;
+
+public class OrcoDecorator extends PersonajeDecorator{
     
-    public ElfoDecorator(Personaje personaje) {
+    public OrcoDecorator(Personaje personaje) {
         super(personaje);
     }
     
@@ -37,4 +39,5 @@ public class ElfoDecorator extends PersonajeDecorator{
     public String getAtacaArriba() {
         return getPersonaje().getAtacaArriba();
     }
+    
 }

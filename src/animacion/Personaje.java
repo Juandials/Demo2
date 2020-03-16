@@ -1,6 +1,8 @@
 package animacion;
 //CLASE PRODUCTO
 
+import prototype.ClonPersonaje;
+
 public class Personaje implements ClonPersonaje{
     private String arriba = "";
     private String abajo = "";

@@ -1,6 +1,8 @@
 package gui;
 
+import decorator.HumanoDecorator;
 import animacion.*;
+import decorator.ElfoDecorator;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -221,7 +223,7 @@ public class recreacion extends JPanel{
         personaje = animar.getPersonaje();
         System.out.println(personaje.getArriba());
         if(eleccion == "Elfo"){
-            personaje = new HumanoDecorator(personaje);
+            personaje = new ElfoDecorator(personaje);
             System.out.println(personaje.getArriba());
         }
         Personaje personajeClonUno = (Personaje) personaje.clonar();

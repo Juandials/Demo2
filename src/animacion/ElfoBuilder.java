@@ -11,42 +11,42 @@ public class ElfoBuilder extends PersonajeBuilder{
 
     @Override
     public void arriba() {
-        personaje.setArriba("/assets/Elfo_arriba.png");
+        personaje.setArriba("/assets/sprites_elfo/Elfo_arriba.png");
     }
 
     @Override
     public void abajo() {
-        personaje.setAbajo("/assets/Elfo_abajo.png");
+        personaje.setAbajo("/assets/sprites_elfo/Elfo_abajo.png");
     }
 
     @Override
     public void derecha() {
-        personaje.setDerecha("/assets/Elfo_derecha.png");
+        personaje.setDerecha("/assets/sprites_elfo/Elfo_derecha.png");
     }
 
     @Override
     public void izquierda() {
-        personaje.setIzquierda("/assets/Elfo_izquierda.png");
+        personaje.setIzquierda("/assets/sprites_elfo/Elfo_izquierda.png");
     }
 
     @Override
     public void atacaArriba() {
-        personaje.setAtacaArriba("/assets/Elfo_ataca_arriba.png");
+        personaje.setAtacaArriba("/assets/sprites_elfo/Elfo_ataca_arriba.png");
     }
 
     @Override
     public void atacaAbajo() {
-        personaje.setAtacaAbajo("/assets/Elfo_ataca_abajo.png");
+        personaje.setAtacaAbajo("/assets/sprites_elfo/Elfo_ataca_abajo.png");
     }
 
     @Override
     public void atacaDerecha() {
-        personaje.setAtacaDerecha("/assets/Elfo_ataca_derecha.png");
+        personaje.setAtacaDerecha("/assets/sprites_elfo/Elfo_ataca_derecha.png");
     }
 
     @Override
     public void atacaIzquierda() {
-        personaje.setAtacaIzquierda("/assets/Elfo_ataca_izquierda.png");
+        personaje.setAtacaIzquierda("/assets/sprites_elfo/Elfo_ataca_izquierda.png");
     }
 
     @Override

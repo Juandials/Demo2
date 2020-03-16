@@ -1,4 +1,4 @@
-package animacion;
+package prototype;
 
 public interface ClonPersonaje extends Cloneable{
     ClonPersonaje clonar();
