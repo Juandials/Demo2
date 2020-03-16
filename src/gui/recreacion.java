@@ -3,6 +3,7 @@ package gui;
 import decorator.HumanoDecorator;
 import animacion.*;
 import decorator.ElfoDecorator;
+import decorator.OrcoDecorator;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -222,8 +223,8 @@ public class recreacion extends JPanel{
         animar.moverse();
         personaje = animar.getPersonaje();
         System.out.println(personaje.getArriba());
-        if(eleccion == "Elfo"){
-            personaje = new ElfoDecorator(personaje);
+        if("Orco".equals(eleccion)){
+            personaje = new OrcoDecorator(personaje);
             System.out.println(personaje.getArriba());
         }
         Personaje personajeClonUno = (Personaje) personaje.clonar();

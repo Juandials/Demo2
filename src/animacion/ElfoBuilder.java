@@ -1,9 +1,6 @@
 package animacion;
 //CONCRETE BUILDER
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class ElfoBuilder extends PersonajeBuilder{
 
     public ElfoBuilder() {
