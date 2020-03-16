@@ -1,6 +1,6 @@
 package animacion;
 //ABSTRACT BUILDER
-public abstract class PersonajeBuilder implements Cloneable{
+public abstract class PersonajeBuilder{
     protected Personaje personaje;
     
     public Personaje getPersonaje(){
@@ -10,8 +10,6 @@ public abstract class PersonajeBuilder implements Cloneable{
     public void crearNuevoPersonaje(){
         personaje = new Personaje();
     }
-    
-    
     
     public abstract void arriba();
     public abstract void abajo();
@@ -49,5 +47,4 @@ public abstract class PersonajeBuilder implements Cloneable{
     public abstract void incyIzquierdaUno();
     public abstract void incxIzquierdaDos();
     public abstract void incyIzquierdaDos();
-    
 }

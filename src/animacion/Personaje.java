@@ -1,7 +1,6 @@
 package animacion;
 //CLASE PRODUCTO
 
-
 public class Personaje implements ClonPersonaje{
     private String arriba = "";
     private String abajo = "";

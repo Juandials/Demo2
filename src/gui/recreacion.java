@@ -201,7 +201,8 @@ public class recreacion extends JPanel{
         repaint();
     }
     public static void inicia() {
-        
+        arreglo_personajes.clear();
+        personajetemp.clear();
         switch(eleccion){
             case "Elfo":
                 animar.SetPersonajeBuilder(new ElfoBuilder());
@@ -218,6 +219,11 @@ public class recreacion extends JPanel{
         }
         animar.moverse();
         personaje = animar.getPersonaje();
+        System.out.println(personaje.getArriba());
+        if(eleccion == "Elfo"){
+            personaje = new HumanoDecorator(personaje);
+            System.out.println(personaje.getArriba());
+        }
         Personaje personajeClonUno = (Personaje) personaje.clonar();
         Personaje personajeClonDos = (Personaje) personaje.clonar();
         arreglo_personajes.add(personaje);
