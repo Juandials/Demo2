@@ -3,30 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/assets/sprites_originales/Humano.png</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/assets/sprites_originales/Orco.png</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/productos/ArmaHumano.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/productos/CuerpoOrco.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/colisiones/Orco.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/assets/Elfo_ataca_izquierda.png</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/colisiones/AtaqueEspada.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/assets/sprites_originales/Elfo.png</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/animacion/OrcoBuilder.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/colisiones/Personaje.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/gui/recreacion.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/assets/sprites_originales/Enano.png</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/animacion/PersonajeBuilder.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/fabricas/FabricaElfo.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/animacion/Animacion.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/assets/Elfo_izquierda.png</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/colisiones/Enano.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/productos/ArmaEnano.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/assets/Elfo_derecha.png</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/colisiones/AtaqueEscudo.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/colisiones/AtaqueMagico.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/gui/gui.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/colisiones/Elfo.java</file>
-            <file>file:/C:/Users/judil/Documents/NetBeansProjects/Demo2/src/colisiones/Humano.java</file>
+            <file>file:/C:/Users/juane/Desktop/demo2/src/gui/recreacion.java</file>
+            <file>file:/C:/Users/juane/Desktop/demo2/src/decorator/PersonajeDecorator.java</file>
         </group>
     </open-files>
 </project-private>
