@@ -7,42 +7,42 @@ public class HumanoBuilder extends PersonajeBuilder{
 
     @Override
     public void arriba() {
-        personaje.setArriba("/assets/Humano_arriba.png");
+        personaje.setArriba("/assets/sprites_humano/Humano_arriba.png");
     }
 
     @Override
     public void abajo() {
-        personaje.setAbajo("/assets/Humano_abajo.png");
+        personaje.setAbajo("/assets/sprites_humano/Humano_abajo.png");
     }
 
     @Override
     public void derecha() {
-        personaje.setDerecha("/assets/Humano_derecha.png");
+        personaje.setDerecha("/assets/sprites_humano/Humano_derecha.png");
     }
 
     @Override
     public void izquierda() {
-        personaje.setIzquierda("/assets/Humano_izquierda.png");
+        personaje.setIzquierda("/assets/sprites_humano/Humano_izquierda.png");
     }
 
     @Override
     public void atacaArriba() {
-        personaje.setAtacaArriba("/assets/Humano_ataca_arriba.png");
+        personaje.setAtacaArriba("/assets/sprites_humano/Humano_ataca_arriba.png");
     }
 
     @Override
     public void atacaAbajo() {
-        personaje.setAtacaAbajo("/assets/Humano_ataca_abajo.png");
+        personaje.setAtacaAbajo("/assets/sprites_humano/Humano_ataca_abajo.png");
     }
 
     @Override
     public void atacaDerecha() {
-        personaje.setAtacaDerecha("/assets/Humano_ataca_derecha.png");
+        personaje.setAtacaDerecha("/assets/sprites_humano/Humano_ataca_derecha.png");
     }
 
     @Override
     public void atacaIzquierda() {
-        personaje.setAtacaIzquierda("/assets/Humano_ataca_izquierda.png");
+        personaje.setAtacaIzquierda("/assets/sprites_humano/Humano_ataca_izquierda.png");
     }
 
     @Override

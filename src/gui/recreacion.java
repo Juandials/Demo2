@@ -52,7 +52,7 @@ public class recreacion extends JPanel {
     boolean entra = true;
     public recreacion() {
 
-        fondo = h.getImage(this.getClass().getResource("/assets/map22x15_claro.png"));
+        fondo = h.getImage(this.getClass().getResource("/assets/map.png"));
         pocion = h.getImage(this.getClass().getResource("/assets/Pocion2.png"));
         ventana.setSize(AnchoVentana, AltoVentana);
         ventana.setResizable(false);
