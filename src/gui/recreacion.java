@@ -254,11 +254,13 @@ public class recreacion extends JPanel {
         }
         animar.moverse();
         personaje = animar.getPersonaje();
-        Personaje personajeClonUno = (Personaje) personaje.clonar();
-        Personaje personajeClonDos = (Personaje) personaje.clonar();
         arreglo_personajes.add(personaje);
-        arreglo_personajes.add(personajeClonUno);
-        arreglo_personajes.add(personajeClonDos);
+        if (poblacion.equals("Población")) {
+            Personaje personajeClonUno = (Personaje) personaje.clonar();
+            Personaje personajeClonDos = (Personaje) personaje.clonar();
+            arreglo_personajes.add(personajeClonUno);
+            arreglo_personajes.add(personajeClonDos);
+        }
         new recreacion().setVisible(true);
     }
 }
