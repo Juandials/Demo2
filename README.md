@@ -13,7 +13,7 @@ La clase decorator PersonajeDecorator, y los decoradores concretos para cada per
 
 ![UML](https://github.com/Juandials/Demo2/blob/master/D.png)
 
-# Prototy
+# Prototype
 
 Utilizando la interfaz ClonPersonaje que hereda de la clase Cloneable de Java se hace una copia del personaje instanciado
 
