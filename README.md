@@ -11,11 +11,11 @@ Se implementan los pactrones Prototype y Decorator
 
 La clase decorator PersonajeDecorator, y los decoradores concretos para cada personaje, la clase decorator selecciona el decorador concreto el cual instanciará un nuevo personaje con los atributos del personaje decorator.
 
-![UML](https://github.com/Juandials/Demo2/D.png)
+![UML](https://github.com/Juandials/Demo2/blob/master/D.png)
 
 # Prototy
 
 Utilizando la interfaz ClonPersonaje que hereda de la clase Cloneable de Java se hace una copia del personaje instanciado
 
-![UML](https://github.com/Juandials/Demo2/p.png)
+![UML](https://github.com/Juandials/Demo2/blob/master/p.png)
 
